@@ -25,3 +25,26 @@ class Solution:
                     has_connection = True
 
 
+
+class Solution:
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        # dfs find connected cities
+        # Keep record of visited
+        # iterate row
+        visited = set()
+        ans = 0
+        n = len(isConnected)
+        for i, x in enumerate(isConnected):
+            if x[i] == 1 and i not in visited:
+                ans += 1
+                self.dfs(isConnected, visited, i)
+        return ans
+
+    
+    def dfs(self, isConnected, visited, i):
+        visited.add(i)
+        for j, x in enumerate(isConnected[i]):
+            if x == 1 and j not in visited:
+                self.dfs(isConnected, visited, j)
+
+
